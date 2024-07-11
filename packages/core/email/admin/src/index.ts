@@ -8,27 +8,30 @@ const admin: Plugin.Config.AdminInput = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   register(app: any) {
     // Create the email settings section
-    app.createSettingSection(
-      {
-        id: 'email',
-        intlLabel: { id: 'email.SettingsNav.section-label', defaultMessage: 'Email Plugin' },
-      },
-      [
-        {
-          intlLabel: {
-            id: 'email.Settings.email.plugin.title',
-            defaultMessage: 'Settings',
-          },
-          id: 'settings',
-          to: 'email',
-          Component: () =>
-            import('./pages/Settings').then((mod) => ({
-              default: mod.ProtectedSettingsPage,
-            })),
-          permissions: PERMISSIONS.settings,
-        },
-      ]
-    );
+
+    // TODO Temp disabled the email plugin settings section
+    // control the order in which the sections are displayed
+    // app.createSettingSection(
+    //   {
+    //     id: 'email',
+    //     intlLabel: { id: 'email.SettingsNav.section-label', defaultMessage: 'Email Plugin' },
+    //   },
+    //   [
+    //     {
+    //       intlLabel: {
+    //         id: 'email.Settings.email.plugin.title',
+    //         defaultMessage: 'Settings',
+    //       },
+    //       id: 'settings',
+    //       to: 'email',
+    //       Component: () =>
+    //         import('./pages/Settings').then((mod) => ({
+    //           default: mod.ProtectedSettingsPage,
+    //         })),
+    //       permissions: PERMISSIONS.settings,
+    //     },
+    //   ]
+    // );
     app.registerPlugin({
       id: 'email',
       name: 'email',

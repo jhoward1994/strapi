@@ -1,19 +1,15 @@
 import React, { forwardRef, memo, useImperativeHandle, useReducer } from 'react';
 
-import { Flex, Grid, Typography } from '@strapi/design-system';
+import { Grid } from '@strapi/design-system';
 import PropTypes from 'prop-types';
-import { useIntl } from 'react-intl';
 
 import { UsersPermissionsProvider } from '../../contexts/UsersPermissionsContext';
-import getTrad from '../../utils/getTrad';
 import Permissions from '../Permissions';
-import Policies from '../Policies';
 
 import init from './init';
 import reducer, { initialState } from './reducer';
 
 const UsersPermissions = forwardRef(({ permissions, routes }, ref) => {
-  const { formatMessage } = useIntl();
   const [state, dispatch] = useReducer(reducer, initialState, (state) =>
     init(state, permissions, routes)
   );
@@ -61,27 +57,11 @@ const UsersPermissions = forwardRef(({ permissions, routes }, ref) => {
 
   return (
     <UsersPermissionsProvider value={providerValue}>
-      <Grid.Root gap={0} shadow="filterShadow" hasRadius background="neutral0">
-        <Grid.Item col={7} paddingTop={6} paddingBottom={6} paddingLeft={7} paddingRight={7}>
-          <Flex direction="column" alignItems="stretch" gap={6}>
-            <Flex direction="column" alignItems="stretch" gap={2}>
-              <Typography variant="delta" tag="h2">
-                {formatMessage({
-                  id: getTrad('Plugins.header.title'),
-                  defaultMessage: 'Permissions',
-                })}
-              </Typography>
-              <Typography tag="p" textColor="neutral600">
-                {formatMessage({
-                  id: getTrad('Plugins.header.description'),
-                  defaultMessage: 'Only actions bound by a route are listed below.',
-                })}
-              </Typography>
-            </Flex>
-            <Permissions />
-          </Flex>
+      {/* TODO fix styling padding etc */}
+      <Grid.Root shadow="filterShadow" hasRadius background="neutral0">
+        <Grid.Item col={12}>
+          <Permissions />
         </Grid.Item>
-        <Policies />
       </Grid.Root>
     </UsersPermissionsProvider>
   );

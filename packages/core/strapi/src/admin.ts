@@ -1,3 +1,4 @@
+// @ts-ignore
 import { RenderAdminArgs, renderAdmin } from '@strapi/admin/strapi-admin';
 import contentTypeBuilder from '@strapi/content-type-builder/strapi-admin';
 import contentManager from '@strapi/content-manager/strapi-admin';
@@ -23,6 +24,9 @@ const render = (mountNode: HTMLElement | null, { plugins, ...restArgs }: RenderA
       // @ts-expect-error – TODO: fix this, the "types" folder has it wrong.
       reviewWorkflows,
       ...plugins,
+      // TODO can we deal with the order of the plugins in the settings menu here?
+      // ['users-permissions']: plugins['users-permissions'],
+      // email: plugins.email,
     },
   });
 };

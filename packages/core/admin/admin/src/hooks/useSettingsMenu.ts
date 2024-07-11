@@ -96,6 +96,8 @@ const useSettingsMenu = (): {
       },
     }
   );
+  // TODO: Choose the order and dont make alphabetical by default??
+  // console.log('adminLinks', adminLinks, globalLinks);
 
   const addPermissions = React.useCallback(
     (link: SettingsMenuLink) => {
@@ -169,7 +171,7 @@ const useSettingsMenu = (): {
       },
       {
         id: 'permissions',
-        intlLabel: { id: 'Settings.permissions', defaultMessage: 'Administration Panel' },
+        intlLabel: { id: '🛑', defaultMessage: 'Admin Settings' },
         links: adminLinks.map(addPermissions),
       },
       ...Object.values(otherSections),

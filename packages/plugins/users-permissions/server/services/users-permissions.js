@@ -67,8 +67,19 @@ module.exports = ({ strapi }) => ({
         {}
       );
 
+      // Track whether each API is a collection type so we can sort them into
+      // tabs in the frontend.
+      const isCollectionType =
+        strapi.getModel(`api::${apiName}.${apiName}`)?.kind === 'collectionType';
+
+      actionMap[`api::${apiName}`] = { isCollectionType };
+
       if (!_.isEmpty(controllers)) {
-        actionMap[`api::${apiName}`] = { controllers };
+        if (!actionMap[`api::${apiName}`]) {
+          actionMap[`api::${apiName}`] = { controllers };
+        } else {
+          actionMap[`api::${apiName}`].controllers = controllers;
+        }
       }
     });
 

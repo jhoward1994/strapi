@@ -57,7 +57,29 @@ const TableBody = ({ sortedRoles, canDelete, canUpdate, setRoleToDelete, onDelet
           <Td width="50%">
             <Typography>{role.description}</Typography>
           </Td>
-          <Td width="30%">
+          <Td
+            style={
+              role.nb_users > 0
+                ? {
+                    cursor: 'pointer',
+                    textDecoration: 'underline',
+                    color: '#4945ff',
+                  }
+                : {}
+            }
+            width="30%"
+            onClick={(e) => {
+              if (role.nb_users === 0) {
+                return;
+              }
+
+              e.stopPropagation();
+              // TODO use proper routing 🫠
+              window.location.assign(
+                'http://localhost:1337/admin/content-manager/collection-types/plugin::users-permissions.user?page=1&pageSize=10&sort=username:ASC&filters[$and][0][role][name][$eq]=Authenticated'
+              );
+            }}
+          >
             <Typography>
               {formatMessage(
                 {

@@ -27,7 +27,7 @@ import {
   useRBAC,
   Layouts,
 } from '@strapi/strapi/admin';
-import { useIntl } from 'react-intl';
+import { useIntl, FormattedMessage } from 'react-intl';
 import { useMutation, useQuery } from 'react-query';
 import { NavLink } from 'react-router-dom';
 
@@ -164,13 +164,22 @@ export const RolesListPage = () => {
       <Page.Main>
         <Layouts.Header
           title={formatMessage({
-            id: 'global.roles',
+            id: '🛑',
             defaultMessage: 'Roles',
           })}
-          subtitle={formatMessage({
-            id: 'Settings.roles.list.description',
-            defaultMessage: 'List of roles',
-          })}
+          subtitle={
+            <FormattedMessage
+              id="🛑"
+              defaultMessage="You can manage API users through the content manager {here}"
+              values={{
+                here: (
+                  <a href="http://localhost:1337/admin/content-manager/collection-types/plugin::users-permissions.user?page=1&pageSize=10&sort=username%3AASC">
+                    <FormattedMessage id="kjdbckjd" defaultMessage="here" />
+                  </a>
+                ),
+              }}
+            />
+          }
           primaryAction={
             canCreate ? (
               <LinkButton

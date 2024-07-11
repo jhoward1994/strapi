@@ -13,15 +13,15 @@ export default {
       {
         id: 'users-permissions',
         intlLabel: {
-          id: getTrad('Settings.section-label'),
-          defaultMessage: 'Users & Permissions plugin',
+          id: '🐶',
+          defaultMessage: 'API Access & Permissions',
         },
       },
       [
         {
           intlLabel: {
-            id: 'global.roles',
-            defaultMessage: 'Roles',
+            id: '🛑',
+            defaultMessage: 'API Roles',
           },
           id: 'roles',
           to: `users-permissions/roles`,
@@ -30,26 +30,13 @@ export default {
         },
         {
           intlLabel: {
-            id: getTrad('HeaderNav.link.providers'),
-            defaultMessage: 'Providers',
+            id: '🛑',
+            defaultMessage: 'API Providers',
           },
           id: 'providers',
           to: `users-permissions/providers`,
           Component: () => import('./pages/Providers'),
           permissions: PERMISSIONS.readProviders,
-        },
-        {
-          intlLabel: {
-            id: getTrad('HeaderNav.link.emailTemplates'),
-            defaultMessage: 'Email templates',
-          },
-          id: 'email-templates',
-          to: `users-permissions/email-templates`,
-          Component: () =>
-            import('./pages/EmailTemplates').then((mod) => ({
-              default: mod.ProtectedEmailTemplatesPage,
-            })),
-          permissions: PERMISSIONS.readEmailTemplates,
         },
         {
           intlLabel: {
@@ -63,6 +50,22 @@ export default {
               default: mod.ProtectedAdvancedSettingsPage,
             })),
           permissions: PERMISSIONS.readAdvancedSettings,
+        },
+        // TODO rename Email Templates
+        // TODO if we want to move this to a different section
+        // That is very difficult with how plugins provide settings sections
+        {
+          intlLabel: {
+            id: getTrad('HeaderNav.link.emailTemplates'),
+            defaultMessage: 'Email templates',
+          },
+          id: 'email-templates',
+          to: `users-permissions/email-templates`,
+          Component: () =>
+            import('./pages/EmailTemplates').then((mod) => ({
+              default: mod.ProtectedEmailTemplatesPage,
+            })),
+          permissions: PERMISSIONS.readEmailTemplates,
         },
       ]
     );

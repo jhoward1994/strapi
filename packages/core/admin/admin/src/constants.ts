@@ -168,6 +168,17 @@ export const SETTINGS_LINKS_CE = (): SettingsMenu => ({
           },
         ]
       : []),
+    ...(!window.strapi.features.isEnabled(window.strapi.features.AUDIT_LOGS) &&
+    window.strapi?.flags?.promoteEE
+      ? [
+          {
+            intlLabel: { id: 'global.auditLogs', defaultMessage: 'Audit Logs' },
+            to: '/settings/purchase-audit-logs',
+            id: 'auditLogs-purchase-page',
+            licenseOnly: true,
+          },
+        ]
+      : []),
   ],
 
   admin: [
@@ -182,16 +193,5 @@ export const SETTINGS_LINKS_CE = (): SettingsMenu => ({
       to: '/settings/users?pageSize=10&page=1&sort=firstname',
       id: 'users',
     },
-    ...(!window.strapi.features.isEnabled(window.strapi.features.AUDIT_LOGS) &&
-    window.strapi?.flags?.promoteEE
-      ? [
-          {
-            intlLabel: { id: 'global.auditLogs', defaultMessage: 'Audit Logs' },
-            to: '/settings/purchase-audit-logs',
-            id: 'auditLogs-purchase-page',
-            licenseOnly: true,
-          },
-        ]
-      : []),
   ],
 });
