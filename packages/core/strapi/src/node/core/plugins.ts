@@ -1,3 +1,8 @@
+//-----
+// This file is used to load the plugins for the admin panel.
+// They can either be local or loaded from the node_modules.
+//-----
+
 import os from 'node:os';
 import path from 'node:path';
 import fs from 'node:fs';

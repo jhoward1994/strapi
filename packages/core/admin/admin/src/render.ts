@@ -17,6 +17,17 @@ interface RenderAdminArgs {
   features?: Modules.Features.FeaturesService['config'];
 }
 
+//--
+// We set up the window.strapi object here.
+// & query for whether we are EE or not.
+
+// You can store the strapi license in .zshrc (or similar)
+// export STRAPI_LICENSE_KEY="..." to make EE the default. And use this to run
+// in CE:
+// yarn; STRAPI_DISABLE_EE=true yarn develop
+
+// See packages/core/admin/admin/src/StrapiApp.tsx
+//--
 const renderAdmin = async (
   mountNode: HTMLElement | null,
   { plugins, customisations, features }: RenderAdminArgs
